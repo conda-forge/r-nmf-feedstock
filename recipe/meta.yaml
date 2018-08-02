@@ -15,7 +15,8 @@ source:
   sha256: 3b30c81c66066fab4a63c5611a0313418b840d8b63414db31ef0e932872d02e3
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -23,6 +24,12 @@ build:
 
 requirements:
   build:
+    - posix                # [win]
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('cxx') }}        # [unix]
+    - {{ compiler('m2w64_cxx') }}  # [win]
+  host:
     - r-base
     - r-rcolorbrewer
     - r-cluster
@@ -37,9 +44,6 @@ requirements:
     - r-reshape2
     - r-rngtools >=1.2.3
     - r-stringr >=1.0.0
-    - posix                # [win]
-    - {{native}}toolchain  # [win]
-    - gcc                  # [not win]
   run:
     - r-base
     - r-rcolorbrewer
@@ -55,7 +59,6 @@ requirements:
     - r-reshape2
     - r-rngtools >=1.2.3
     - r-stringr >=1.0.0
-    - libgcc  # [not win]
 
 test:
   commands:
