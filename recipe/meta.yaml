@@ -12,6 +12,8 @@ source:
     - {{ cran_mirror }}/src/contrib/NMF_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/NMF/NMF_{{ version }}.tar.gz
   sha256: 3b30c81c66066fab4a63c5611a0313418b840d8b63414db31ef0e932872d02e3
+  patches:
+    - patches/0001-support-strict-r-headers.patch
 
 build:
   merge_build_host: True  # [win]
@@ -23,10 +25,10 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not win]
-    - {{ compiler('cxx') }}      # [not win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ compiler('m2w64_cxx') }}        # [win]
+    - {{ compiler('c') }}          # [not win]
+    - {{ compiler('cxx') }}        # [not win]
+    - {{ compiler('m2w64_c') }}    # [win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
@@ -71,14 +73,16 @@ test:
 
 about:
   home: http://renozao.github.io/NMF
-  license: GPL (>= 2)
+  license: GPL-2.0-or-later
   summary: Provides a framework to perform Non-negative Matrix Factorization (NMF). The package
     implements a set of already published algorithms and seeding methods, and provides
     a framework to test, develop and plug new/custom algorithms. Most of the built-in
     algorithms have been optimized in C++, and the main interface function provides
     an easy way of performing parallel computations on multicore machines.
   license_family: GPL3
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+  license_file: 
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
