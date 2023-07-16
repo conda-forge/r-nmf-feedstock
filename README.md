@@ -3,20 +3,22 @@ About r-nmf-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-nmf-feedstock/blob/main/LICENSE.txt)
 
+
 About r-nmf
 -----------
 
 Home: http://renozao.github.io/NMF
 
-Package license: GPL (>= 2)
+Package license: GPL-2.0-or-later
 
 Summary: Provides a framework to perform Non-negative Matrix Factorization (NMF). The package implements a set of already published algorithms and seeding methods, and provides a framework to test, develop and plug new/custom algorithms. Most of the built-in algorithms have been optimized in C++, and the main interface function provides an easy way of performing parallel computations on multicore machines.
+
 About r-nmf
 -----------
 
 Home: http://renozao.github.io/NMF
 
-Package license: GPL (>= 2)
+Package license: GPL-2.0-or-later
 
 Summary: Provides a framework to perform Non-negative Matrix Factorization (NMF). The package implements a set of already published algorithms and seeding methods, and provides a framework to test, develop and plug new/custom algorithms. Most of the built-in algorithms have been optimized in C++, and the main interface function provides an easy way of performing parallel computations on multicore machines.
 
