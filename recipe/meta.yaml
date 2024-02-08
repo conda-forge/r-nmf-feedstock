@@ -1,4 +1,4 @@
-{% set version = '0.21.0' %}
+{% set version = "0.27" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,13 +11,13 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/NMF_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/NMF/NMF_{{ version }}.tar.gz
-  sha256: 3b30c81c66066fab4a63c5611a0313418b840d8b63414db31ef0e932872d02e3
+  sha256: af4302efca4a7654fecd31c376f1bb3496428279a50b8d5691c8a7e66e3f3ef9
   patches:
     - patches/0001-support-strict-r-headers.patch
 
 build:
-  merge_build_host: True  # [win]
-  number: 1006
+  merge_build_host: true  # [win]
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -74,13 +74,10 @@ test:
 about:
   home: http://renozao.github.io/NMF
   license: GPL-2.0-or-later
-  summary: Provides a framework to perform Non-negative Matrix Factorization (NMF). The package
-    implements a set of already published algorithms and seeding methods, and provides
-    a framework to test, develop and plug new/custom algorithms. Most of the built-in
-    algorithms have been optimized in C++, and the main interface function provides
-    an easy way of performing parallel computations on multicore machines.
+  summary: Provides a framework to perform Non-negative Matrix Factorization (NMF). The package implements a set of already published algorithms and seeding methods, and provides a framework to test, develop and plug new/custom algorithms. Most of the built-in algorithms have been optimized in C++, and the main interface
+    function provides an easy way of performing parallel computations on multicore machines.
   license_family: GPL3
-  license_file: 
+  license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
