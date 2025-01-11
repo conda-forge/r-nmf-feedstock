@@ -15,7 +15,7 @@ source:
     - patches/0001-support-strict-r-headers.patch
 
 build:
-  number: 1007
+  number: 1008
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -34,6 +34,20 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-rcolorbrewer               # [build_platform != target_platform]
+    - r-cluster                    # [build_platform != target_platform]
+    - r-colorspace                 # [build_platform != target_platform]
+    - r-digest                     # [build_platform != target_platform]
+    - r-doparallel                 # [build_platform != target_platform]
+    - r-foreach                    # [build_platform != target_platform]
+    - r-ggplot2                    # [build_platform != target_platform]
+    - r-gridbase                   # [build_platform != target_platform]
+    - r-pkgmaker >=0.20            # [build_platform != target_platform]
+    - r-registry                   # [build_platform != target_platform]
+    - r-reshape2                   # [build_platform != target_platform]
+    - r-rngtools >=1.2.3           # [build_platform != target_platform]
+    - r-stringr >=1.0.0            # [build_platform != target_platform]
   host:
     - r-base
     - r-rcolorbrewer
@@ -78,7 +92,6 @@ about:
     a framework to test, develop and plug new/custom algorithms. Most of the built-in
     algorithms have been optimized in C++, and the main interface function provides
     an easy way of performing parallel computations on multicore machines.
-  license_family: GPL3
   license_file: 
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
