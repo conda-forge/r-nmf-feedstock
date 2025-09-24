@@ -15,7 +15,7 @@ source:
     - patches/0001-support-strict-r-headers.patch
 
 build:
-  number: 1007
+  number: 1008
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
