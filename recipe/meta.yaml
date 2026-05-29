@@ -1,74 +1,26 @@
-{% set version = '0.21.0' %}
-{% set posix = 'm2-' if win else '' %}
+{% set version = "0.21.0" %}
 
 package:
-  name: r-nmf
+  name: _r-nmf
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: NMF_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/NMF_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/NMF/NMF_{{ version }}.tar.gz
   sha256: 3b30c81c66066fab4a63c5611a0313418b840d8b63414db31ef0e932872d02e3
-  patches:
-    - patches/0001-support-strict-r-headers.patch
 
 build:
-  number: 1008
-  skip: true  # [win32]
-  rpaths:
-    - lib/R/lib/
-    - lib/
+  noarch: generic
+  number: 1000
 
 requirements:
-  build:
-    - {{ compiler('c') }}          # [not win]
-    - {{ stdlib("c") }}            # [not win]
-    - {{ compiler('cxx') }}        # [not win]
-    - {{ compiler('m2w64_c') }}    # [win]
-    - {{ stdlib("m2w64_c") }}      # [win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - {{ posix }}filesystem        # [win]
-    - {{ posix }}make
-    - {{ posix }}sed               # [win]
-    - {{ posix }}coreutils         # [win]
-    - {{ posix }}zip               # [win]
-  host:
-    - r-base
-    - r-rcolorbrewer
-    - r-cluster
-    - r-colorspace
-    - r-digest
-    - r-doparallel
-    - r-foreach
-    - r-ggplot2
-    - r-gridbase
-    - r-pkgmaker >=0.20
-    - r-registry
-    - r-reshape2
-    - r-rngtools >=1.2.3
-    - r-stringr >=1.0.0
   run:
-    - r-base
-    - r-rcolorbrewer
-    - r-cluster
-    - r-colorspace
-    - r-digest
-    - r-doparallel
-    - r-foreach
-    - r-ggplot2
-    - r-gridbase
-    - r-pkgmaker >=0.20
-    - r-registry
-    - r-reshape2
-    - r-rngtools >=1.2.3
-    - r-stringr >=1.0.0
+    - 'r-nmf=={{ version }}=*[channel=bioconda]'
 
 test:
   commands:
-    - $R -e "library('NMF')"           # [not win]
-    - "\"%R%\" -e \"library('NMF')\""  # [win]
+    - R -e "library('NMF')"
 
 about:
   home: http://renozao.github.io/NMF
@@ -79,9 +31,10 @@ about:
     algorithms have been optimized in C++, and the main interface function provides
     an easy way of performing parallel computations on multicore machines.
   license_family: GPL3
-  license_file: 
-    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
-    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+  license_file:
+    # - ${{ env.get("PREFIX", default="NOT_A_PATH") }}/lib/R/share/licenses/GPL-2
+    # - ${{ env.get("PREFIX", default="NOT_A_PATH") }}/lib/R/share/licenses/GPL-3
+    - GPL-2-3
 
 extra:
   recipe-maintainers:
